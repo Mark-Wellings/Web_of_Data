@@ -1,0 +1,63 @@
+1.
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+SELECT ?name ?mail
+WHERE {        
+ ?x foaf:name ?name.
+ ?x foaf:mbox ?mail 
+}
+
+2.
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+SELECT ?name ?mail
+WHERE {        
+ ?x foaf:name ?name
+OPTIONAL{?x foaf:mbox ?mail} 
+}
+
+3.
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+PREFIX ex: <http://example.org/country/>
+SELECT ?pais
+WHERE { ?pais ex:poblacion ?poblacion        
+   FILTER(?poblacion > "40,000")
+}
+
+4.
+
+PREFIX ex: <http://example.org/country/>
+ASK
+{
+ex:France ex:poblacion ?m.
+ex:Canada ex:poblacion ?r    
+    
+    FILTER (?m >?r) 
+}
+
+5. 
+
+PREFIX dc: <http://purl.org/dc/elements/1.1/> 
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+PREFIX ex4: <http://example.org/award/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX g1: <http://example.org/film/g1/> 
+PREFIX g2: <http://example.org/film/g2/> 
+PREFIX g3: <http://example.org/film/g3/>
+
+
+INSERT DATA
+{ 
+  <http://example.org/film/g3/> g3:foaf:name "MOVIENEW" ;
+								g3:duration "200" ;
+								g3:country "Germany" ;
+								g3:music "Antonio Banders" .
+}
+
+PREFIX g1: <http://example.org/film/g1/>
+
+CLEAR GRAPH 
+
+<http://example.org/film/g1>
+

@@ -1,0 +1,15 @@
+PREFIX dc:   <http://purl.org/dc/elements/1.1/> 
+PREFIX ex2: <http://example.org/book/>
+SELECT ?s ?price
+WHERE { ?s ex2:price ?price }
+ORDER BY DESC(?price) LIMIT 1
+
+or:
+
+PREFIX dc:   <http://purl.org/dc/elements/1.1/> 
+PREFIX ex2: <http://example.org/book/>
+SELECT (MAX(?price) AS ?maxprice)
+WHERE { 
+?s ex2:price ?price
+}
+
